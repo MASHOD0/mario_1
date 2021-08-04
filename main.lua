@@ -52,3 +52,11 @@ function love.resize(w, h)
     push:resize(w, h)
 end
 
+-- global key pressed function
+function love.keyboard.wasPressed(key)
+    if (love.keyboard.keysPressed[key]) then
+        return true
+    else
+        return false
+    end
+end
