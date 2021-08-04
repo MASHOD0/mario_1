@@ -34,3 +34,35 @@ function push:applySettings(settings)
 end
 
 function push:resetSettings() return self:applySettings(self.defaults) end
+
+function push:setupScreen(WWIDTH, WHEIGHT, RWIDTH, RHEIGHT, settings)
+
+    settings = settings or {}
+  
+    self._WWIDTH, self._WHEIGHT = WWIDTH, WHEIGHT
+    self._RWIDTH, self._RHEIGHT = RWIDTH, RHEIGHT
+  
+    self:applySettings(self.defaults) --set defaults first
+    self:applySettings(settings) --then fill with custom settings
+    
+    windowUpdateMode(self._RWIDTH, self._RHEIGHT, {
+      fullscreen = self._fullscreen,
+      resizable = self._resizable,
+      highdpi = self._highdpi
+    })
+  
+    self:initValues()
+  
+    if self._canvas then
+      self:setupCanvas({ "default" }) --setup canvas
+    end
+  
+    self._borderColor = {0, 0, 0}
+  
+    self._drawFunctions = {
+      ["start"] = self.start,
+      ["end"] = self.finish
+    }
+  
+    return self
+  end
