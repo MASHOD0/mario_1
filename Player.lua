@@ -251,3 +251,19 @@ function Player:checkRightCollision()
         end
     end
 end
+
+function Player:render()
+    local scaleX
+
+    -- set negative x scale factor if facing left, which will flip the sprite
+    -- when applied
+    if self.direction == 'right' then
+        scaleX = 1
+    else
+        scaleX = -1
+    end
+
+    -- draw sprite with scale factor and offsets
+    love.graphics.draw(self.texture, self.currentFrame, math.floor(self.x + self.xOffset),
+        math.floor(self.y + self.yOffset), 0, scaleX, 1, self.xOffset, self.yOffset)
+end
