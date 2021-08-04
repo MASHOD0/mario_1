@@ -83,3 +83,12 @@ end
 function love.keyreleased(key)
     love.keyboard.keysReleased[key] = true
 end
+
+-- called every frame, with dt passed in as delta in time since last frame
+function love.update(dt)
+    map:update(dt)
+
+    -- reset all keys pressed and released this frame
+    love.keyboard.keysPressed = {}
+    love.keyboard.keysReleased = {}
+end
