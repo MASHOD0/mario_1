@@ -119,10 +119,6 @@ function love.draw()
     end
 
     -- end virtual resolution
-    
-    
-    
-
     push:apply('end')
     
 end
