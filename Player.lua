@@ -33,3 +33,4 @@ function push:applySettings(settings)
     end
 end
 
+function push:resetSettings() return self:applySettings(self.defaults) end
