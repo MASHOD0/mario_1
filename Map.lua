@@ -173,3 +173,21 @@ function Map:init()
     self.music:setLooping(true)
     self.music:play()
 end
+
+-- return whether a given tile is collidable
+function Map:collides(tile)
+    -- define our collidable tiles
+    local collidables = {
+        TILE_BRICK, JUMP_BLOCK, JUMP_BLOCK_HIT,
+        MUSHROOM_TOP, MUSHROOM_BOTTOM
+    }
+
+    -- iterate and return true if our tile type matches
+    for _, v in ipairs(collidables) do
+        if tile.id == v then
+            return true
+        end
+    end
+
+    return false
+end
