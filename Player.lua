@@ -67,16 +67,24 @@ function push:setupScreen(WWIDTH, WHEIGHT, RWIDTH, RHEIGHT, settings)
     return self
   end
 
-  function push:setupCanvas(canvases)
+function push:setupCanvas(canvases)
     table.insert(canvases, { name = "_render", private = true }) --final render
-  
+
     self._canvas = true
     self.canvases = {}
-  
+
     for i = 1, #canvases do
-      push:addCanvas(canvases[i])
+        push:addCanvas(canvases[i])
     end
-  
+
     return self
+end
+function push:addCanvas(params)
+    table.insert(self.canvases, {
+      name = params.name,
+      private = params.private,
+      shader = params.shader,
+      canvas = love.graphics.newCanvas(self._WWIDTH, self._WHEIGHT),
+      stencil = params.stencil or self._stencil
+    })
   end
-  
