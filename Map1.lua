@@ -221,3 +221,8 @@ end
 function Map:getTile(x, y)
     return self.tiles[(y - 1) * self.mapWidth + x]
 end
+
+-- sets a tile at a given x-y coordinate to an integer value
+function Map:setTile(x, y, id)
+    self.tiles[(y - 1) * self.mapWidth + x] = id
+end
