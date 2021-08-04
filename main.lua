@@ -46,3 +46,9 @@ function love.load()
     love.keyboard.keysPressed = {}
     love.keyboard.keysReleased = {}
 end
+
+-- called whenever window is resized
+function love.resize(w, h)
+    push:resize(w, h)
+end
+
