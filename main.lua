@@ -78,3 +78,8 @@ function love.keypressed(key)
 
     love.keyboard.keysPressed[key] = true
 end
+
+-- called whenever a key is released
+function love.keyreleased(key)
+    love.keyboard.keysReleased[key] = true
+end
