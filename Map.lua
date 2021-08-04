@@ -220,3 +220,18 @@ end
 function Map:setTile(x, y, id)
     self.tiles[(y - 1) * self.mapWidth + x] = id
 end
+
+-- renders our map to the screen, to be called by main's render
+function Map:render()
+    for y = 1, self.mapHeight do
+        for x = 1, self.mapWidth do
+            local tile = self:getTile(x, y)
+            if tile ~= TILE_EMPTY then
+                love.graphics.draw(self.spritesheet, self.sprites[tile],
+                    (x - 1) * self.tileWidth, (y - 1) * self.tileHeight)
+            end
+        end
+    end
+
+    self.player:render()
+end
