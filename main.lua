@@ -92,3 +92,37 @@ function love.update(dt)
     love.keyboard.keysPressed = {}
     love.keyboard.keysReleased = {}
 end
+
+-- called each frame, used to render to the screen
+function love.draw()
+    -- begin virtual resolution drawing
+    push:apply('start')
+    
+
+    
+        
+       
+
+    -- clear screen using Mario background blue
+    love.graphics.clear(108/255, 140/255, 255/255, 255/255)
+
+    -- renders our map object onto the screen
+    love.graphics.translate(math.floor(-map.camX + 0.5), math.floor(-map.camY + 0.5))
+    map:render()
+    if map.player.x > (map.mapWidth - 2) * map.tileWidth then
+        love.graphics.printf(
+        'Victory !!!', 
+        0,
+        VIRTUAL_HEIGHT / 2 - 8,
+        VIRTUAL_WIDTH,
+        'center')
+    end
+
+    -- end virtual resolution
+    
+    
+    
+
+    push:apply('end')
+    
+end
