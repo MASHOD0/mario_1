@@ -26,3 +26,10 @@ local push = {
     
   }
   setmetatable(push, push)
+
+function push:applySettings(settings)
+    for k, v in pairs(settings) do
+        self["_" .. k] = v
+    end
+end
+
