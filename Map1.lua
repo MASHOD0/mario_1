@@ -207,3 +207,12 @@ function Map:update(dt)
     self.camX = math.max(0, math.min(self.player.x - VIRTUAL_WIDTH / 2,
         math.min(self.mapWidthPixels - VIRTUAL_WIDTH, self.player.x)))
 end
+
+-- gets the tile type at a given pixel coordinate
+function Map:tileAt(x, y)
+    return {
+        x = math.floor(x / self.tileWidth) + 1,
+        y = math.floor(y / self.tileHeight) + 1,
+        id = self:getTile(math.floor(x / self.tileWidth) + 1, math.floor(y / self.tileHeight) + 1)
+    }
+end
