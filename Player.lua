@@ -223,3 +223,17 @@ function Player:calculateJumps()
         end
     end
 end
+
+-- checks two tiles to our left to see if a collision occurred
+function Player:checkLeftCollision()
+    if self.dx < 0 then
+        -- check if there's a tile directly beneath us
+        if self.map:collides(self.map:tileAt(self.x - 1, self.y)) or
+            self.map:collides(self.map:tileAt(self.x - 1, self.y + self.height - 1)) then
+            
+            -- if so, reset velocity and position and change state
+            self.dx = 0
+            self.x = self.map:tileAt(self.x - 1, self.y).x * self.map.tileWidth
+        end
+    end
+end
