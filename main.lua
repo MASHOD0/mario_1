@@ -60,3 +60,12 @@ function love.keyboard.wasPressed(key)
         return false
     end
 end
+
+-- global key released function
+function love.keyboard.wasReleased(key)
+    if (love.keyboard.keysReleased[key]) then
+        return true
+    else
+        return false
+    end
+end
