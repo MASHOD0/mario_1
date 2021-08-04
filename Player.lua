@@ -66,3 +66,17 @@ function push:setupScreen(WWIDTH, WHEIGHT, RWIDTH, RHEIGHT, settings)
   
     return self
   end
+
+  function push:setupCanvas(canvases)
+    table.insert(canvases, { name = "_render", private = true }) --final render
+  
+    self._canvas = true
+    self.canvases = {}
+  
+    for i = 1, #canvases do
+      push:addCanvas(canvases[i])
+    end
+  
+    return self
+  end
+  
