@@ -185,3 +185,41 @@ function Player:update(dt)
     -- apply velocity
     self.y = self.y + self.dy * dt
 end
+
+-- jumping and block hitting logic
+function Player:calculateJumps()
+    
+    -- if we have negative y velocity (jumping), check if we collide
+    -- with any blocks above us
+    if self.dy < 0 then
+        if self.map:tileAt(self.x, self.y).id ~= TILE_EMPTY or
+            self.map:tileAt(self.x + self.width - 1, self.y).id ~= TILE_EMPTY then
+            -- reset y velocity
+            self.dy = 0
+
+            -- change block to different block
+            local playCoin = false
+            local playHit = false
+            if self.map:tileAt(self.x, self.y).id == JUMP_BLOCK then
+                self.map:setTile(math.floor(self.x / self.map.tileWidth) + 1,
+                    math.floor(self.y / self.map.tileHeight) + 1, JUMP_BLOCK_HIT)
+                playCoin = true
+            else
+                playHit = true
+            end
+            if self.map:tileAt(self.x + self.width - 1, self.y).id == JUMP_BLOCK then
+                self.map:setTile(math.floor((self.x + self.width - 1) / self.map.tileWidth) + 1,
+                    math.floor(self.y / self.map.tileHeight) + 1, JUMP_BLOCK_HIT)
+                playCoin = true
+            else
+                playHit = true
+            end
+
+            if playCoin then
+                self.sounds['coin']:play()
+            elseif playHit then
+                self.sounds['hit']:play()
+            end
+        end
+    end
+end
