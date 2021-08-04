@@ -12,3 +12,17 @@ local windowUpdateMode = love11 and love.window.updateMode or function(width, he
   for k, v in pairs(settings) do flags[k] = v end
   love.window.setMode(width, height, flags)
 end
+
+local push = {
+  
+    defaults = {
+      fullscreen = false,
+      resizable = false,
+      pixelperfect = false,
+      highdpi = true,
+      canvas = true,
+      stencil = true
+    }
+    
+  }
+  setmetatable(push, push)
