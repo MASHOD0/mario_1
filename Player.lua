@@ -174,3 +174,14 @@ function Player:init(map)
     }
 end
 
+function Player:update(dt)
+    self.behaviors[self.state](dt)
+    self.animation:update(dt)
+    self.currentFrame = self.animation:getCurrentFrame()
+    self.x = self.x + self.dx * dt
+
+    self:calculateJumps()
+
+    -- apply velocity
+    self.y = self.y + self.dy * dt
+end
