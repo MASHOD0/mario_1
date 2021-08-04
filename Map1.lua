@@ -216,3 +216,8 @@ function Map:tileAt(x, y)
         id = self:getTile(math.floor(x / self.tileWidth) + 1, math.floor(y / self.tileHeight) + 1)
     }
 end
+
+-- returns an integer value for the tile at a given x-y coordinate
+function Map:getTile(x, y)
+    return self.tiles[(y - 1) * self.mapWidth + x]
+end
