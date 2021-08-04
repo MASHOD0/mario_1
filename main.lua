@@ -28,3 +28,21 @@ love.graphics.setDefaultFilter('nearest', 'nearest')
 
 -- an object to contain our map data
 map = Map()
+
+-- performs initialization of all objects and data needed by program
+function love.load()
+
+    -- sets up a different, better-looking retro font as our default
+    love.graphics.setFont(love.graphics.newFont('fonts/font.ttf', 16))
+
+    -- sets up virtual screen resolution for an authentic retro feel
+    push:setupScreen(VIRTUAL_WIDTH, VIRTUAL_HEIGHT, WINDOW_WIDTH, WINDOW_HEIGHT, {
+        fullscreen = false,
+        resizable = true
+    })
+
+    love.window.setTitle('Super Mario 50')
+
+    love.keyboard.keysPressed = {}
+    love.keyboard.keysReleased = {}
+end
