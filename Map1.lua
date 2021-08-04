@@ -198,3 +198,12 @@ function Map:collides(tile)
 
     return false
 end
+
+function Map:update(dt)
+    self.player:update(dt)
+    
+    -- keep camera's X coordinate following the player, preventing camera from
+    -- scrolling past 0 to the left and the map's width
+    self.camX = math.max(0, math.min(self.player.x - VIRTUAL_WIDTH / 2,
+        math.min(self.mapWidthPixels - VIRTUAL_WIDTH, self.player.x)))
+end
