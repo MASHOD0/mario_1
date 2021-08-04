@@ -69,3 +69,12 @@ function love.keyboard.wasReleased(key)
         return false
     end
 end
+
+-- called whenever a key is pressed
+function love.keypressed(key)
+    if key == 'escape' then
+        love.event.quit()
+    end
+
+    love.keyboard.keysPressed[key] = true
+end
