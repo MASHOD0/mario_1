@@ -237,3 +237,17 @@ function Player:checkLeftCollision()
         end
     end
 end
+
+-- checks two tiles to our right to see if a collision occurred
+function Player:checkRightCollision()
+    if self.dx > 0 then
+        -- check if there's a tile directly beneath us
+        if self.map:collides(self.map:tileAt(self.x + self.width, self.y)) or
+            self.map:collides(self.map:tileAt(self.x + self.width, self.y + self.height - 1)) then
+            
+            -- if so, reset velocity and position and change state
+            self.dx = 0
+            self.x = (self.map:tileAt(self.x + self.width, self.y).x - 1) * self.map.tileWidth - self.width
+        end
+    end
+end
